@@ -13,7 +13,7 @@ func main() {
 	fmt.Println("Simple Echo Shell")
 
 	for {
-		fmt.Print("echo > ")
+		fmt.Print(getWorkingDir(), " > ")
 		text, _ := reader.ReadString('\n')
 		text = text[:len(text)-1]
 		parseCommand(text)
@@ -35,4 +35,9 @@ func parseCommand(command string) {
 		}
 		fmt.Printf("%s", out)
 	}
+}
+
+func getWorkingDir() string {
+	pwd, _ := os.Getwd()
+	return pwd
 }

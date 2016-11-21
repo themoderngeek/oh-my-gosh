@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"os/exec"
+	"strings"
 )
 
 func main() {
@@ -24,6 +26,14 @@ func parseCommand(command string) {
 	} else if command == "" {
 		//Do nothing
 	} else {
-		fmt.Println(command)
+		commands := strings.Fields(command)
+		command = commands[0]
+		args := commands[1:]
+		//fmt.Println(command, args)
+		out, err := exec.Command(command, args...).Output()
+		if err != nil {
+			fmt.Println("Error: ", err)
+		}
+		fmt.Printf("%s", out)
 	}
 }

@@ -21,14 +21,17 @@ func main() {
 }
 
 func parseCommand(command string) {
+	commands := strings.Fields(command)
+	command = commands[0]
+	args := commands[1:]
+
 	if command == "exit" {
 		os.Exit(1)
+	} else if command == "cd" {
+		changeDir(args[0])
 	} else if command == "" {
 		//Do nothing
 	} else {
-		commands := strings.Fields(command)
-		command = commands[0]
-		args := commands[1:]
 		out, err := exec.Command(command, args...).Output()
 		if err != nil {
 			fmt.Println("Error: ", err)
@@ -40,4 +43,8 @@ func parseCommand(command string) {
 func getWorkingDir() string {
 	pwd, _ := os.Getwd()
 	return pwd
+}
+
+func changeDir(path string) error {
+	return os.Chdir(path)
 }

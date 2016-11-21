@@ -29,7 +29,6 @@ func parseCommand(command string) {
 		commands := strings.Fields(command)
 		command = commands[0]
 		args := commands[1:]
-		//fmt.Println(command, args)
 		out, err := exec.Command(command, args...).Output()
 		if err != nil {
 			fmt.Println("Error: ", err)

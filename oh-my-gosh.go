@@ -14,17 +14,18 @@ func main() {
 	for {
 		fmt.Print("echo > ")
 		text, _ := reader.ReadString('\n')
+		text = text[:len(text)-1]
 		parseCommand(text)
 	}
 
 }
 
 func parseCommand(command string) {
-	if command == "exit\n" {
+	if command == "exit" {
 		os.Exit(1)
-	} else if command == "\n" {
+	} else if command == "" {
 
 	} else {
-		fmt.Print(command)
+		fmt.Println(command)
 	}
 }

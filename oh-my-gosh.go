@@ -10,7 +10,7 @@ import (
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Println("Simple Echo Shell")
+	fmt.Println("Starting oh my gosh")
 
 	for {
 		pwd, _ := os.Getwd()

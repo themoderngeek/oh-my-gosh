@@ -13,7 +13,8 @@ func main() {
 	fmt.Println("Simple Echo Shell")
 
 	for {
-		fmt.Print(getWorkingDir(), " > ")
+		pwd, _ := os.Getwd()
+		fmt.Print(pwd, " > ")
 		text, _ := reader.ReadString('\n')
 		text = text[:len(text)-1]
 		parseCommand(text)
@@ -35,7 +36,7 @@ func runCommand(command string, args ...string) {
 	if command == "exit" {
 		os.Exit(1)
 	} else if command == "cd" {
-		changeDir(args[0])
+		os.Chdir(args[0])
 	} else if command == "" {
 		//Do nothing
 	} else {
@@ -45,13 +46,4 @@ func runCommand(command string, args ...string) {
 		}
 		fmt.Printf("%s", out)
 	}
-}
-
-func getWorkingDir() string {
-	pwd, _ := os.Getwd()
-	return pwd
-}
-
-func changeDir(path string) error {
-	return os.Chdir(path)
 }

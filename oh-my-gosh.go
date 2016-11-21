@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Println("Simple Echo Shell")
 
@@ -17,14 +16,13 @@ func main() {
 		text = text[:len(text)-1]
 		parseCommand(text)
 	}
-
 }
 
 func parseCommand(command string) {
 	if command == "exit" {
 		os.Exit(1)
 	} else if command == "" {
-
+		//Do nothing
 	} else {
 		fmt.Println(command)
 	}
